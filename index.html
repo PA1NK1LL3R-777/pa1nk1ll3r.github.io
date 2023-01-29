@@ -1,1 +1,36 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hora em São Paulo e Nova Iorque</title>
+  <style>
+    #time-sp, #time-ny {
+    font-size: 20px;
+    font-weight: bold;
+}
+  </style>
+</head>
+<body>
+  <div id="time-sp">
+    <?php
+      date_default_timezone_set('America/Sao_Paulo');
+      echo "São Paulo: " . date('h:i:s A');
+    ?>
+  </div>
+  <div id="time-ny">
+    <?php
+      date_default_timezone_set('America/New_York');
+      echo "Nova Iorque: " . date('h:i:s A');
+    ?>
+  </div>
+  <script>
+  function updateTime() {
+    var dateSP = new Date();
+    var dateNY = new Date();
+    dateNY.setHours(dateNY.getHours() - 3);
+    document.getElementById("time-sp").innerHTML = "São Paulo: " + dateSP.toLocaleTimeString();
+    document.getElementById("time-ny").innerHTML = "Nova Iorque: " + dateNY.toLocaleTimeString();
+  }
+  setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>
